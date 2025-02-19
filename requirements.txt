@@ -9,3 +9,4 @@ selenium==4.28.1
 PyYAML==6.0.1
 requests==2.32.3
 Faker==26.0.0
+ruamel.yaml==0.18.10
