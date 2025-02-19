@@ -1,0 +1,25 @@
+# Campos de entrada
+input_email: "id:user-name"
+input_senha: "id:password"
+input_first_name: "id:first-name"
+input_last_name: "id:last-name"
+input_zipcode: "id:postal-code"
+
+# Botões
+click_button_login: "id:login-button"
+click_product: "id:item_4_img_link"
+click_button_add_cart: "id:add-to-cart"
+click_button_checkout: "id:checkout"
+click_button_continue: "id:continue"
+click_button_finish: "id:finish"
+click_button_back_home: "id:back-to-products"
+
+# Elementos de verificação
+check_page: "class:inventory_list"
+check_inventory: "class:inventory_details"
+check_product: "class:inventory_details_container"
+check_shop_cart: "class:shopping_cart_badge"
+check_product_cart: "class:cart_item"
+check_checkout_info: "id:checkout_info_container"
+check_checkout_overview: "id:checkout_summary_container"
+check_checkout_complete: "id:checkout_complete_container"
