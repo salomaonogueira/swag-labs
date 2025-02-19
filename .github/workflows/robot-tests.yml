@@ -43,7 +43,7 @@ jobs:
           ROBOT_BROWSER: chrome
         run: |
           mkdir -p results
-          robot -d results tests/
+          robot --variable BROWSER:headlesschrome -d results tests/
 
       - name: Fazer upload dos relatórios de teste
         uses: actions/upload-artifact@v4
