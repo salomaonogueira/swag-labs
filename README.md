@@ -103,8 +103,6 @@ Abra os arquivos `.html` no navegador para visualizar os detalhes.
 - **Robot Framework** (Framework de automação de testes)
 - **SeleniumLibrary** (Automação de testes web)
 - **YamlLibrary** (Leitura de arquivos YAML)
-- **Faker** (Geração de dados fictícios)
-- **RequestsLibrary** (Testes de API)
 - **Pabot** (Execução paralela)
 
 ---
