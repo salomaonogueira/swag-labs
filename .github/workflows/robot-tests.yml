@@ -1,4 +1,4 @@
-name: Robot Framework Tests
+name: swag-labs
 
 on:
   push:
@@ -24,33 +24,18 @@ jobs:
       - name: Instalar dependências do sistema
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget unzip curl
-
-      - name: Instalar Google Chrome e ChromeDriver
-        run: |
-          # Baixar e instalar o Google Chrome
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          
-          # Baixar e configurar o ChromeDriver
-          CHROME_VERSION=$(google-chrome --version | grep -oP '[0-9.]+' | head -1)
-          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-          wget -N "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip" -P ~/
-          unzip ~/chromedriver_linux64.zip -d ~/
-          sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
-          sudo chmod +x /usr/local/bin/chromedriver
-
-          # Exibir versões instaladas
-          google-chrome --version
-          chromedriver --version
+          sudo apt-get install -y wget unzip curl google-chrome-stable
 
       - name: Instalar dependências do projeto
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install webdriver-manager
           pip install ruamel.yaml
+
+      - name: Configurar WebDriver Manager
+        run: |
+          python -c "from selenium import webdriver; from webdriver_manager.chrome import ChromeDriverManager; driver = webdriver.Chrome(ChromeDriverManager().install())"
 
       - name: Executar Testes com Robot Framework
         run: |
