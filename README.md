@@ -117,14 +117,32 @@ Caso precise atualizar as dependências:
 pip freeze > requirements.txt
 ```
 
----
+## 🛠 Configuração do GitHub Actions
+📄 .github/workflows/robot-tests.yml
+Este arquivo define um workflow que:
 
-📌 **Dicas para o Desafio Técnico:**
-- **Demonstre organização**: O README está estruturado de forma lógica e clara.
-- **Facilidade de uso**: Instruções diretas para instalação e execução dos testes.
-- **Destaque boas práticas**: Uso de ambiente virtual, execução paralela e logs detalhados.
+Instala o Python e ChromeDriver corretos
+Baixa as dependências do projeto
+Executa os testes do Robot Framework
+Faz upload dos relatórios como artefatos para download
 
-🎯 **Boa sorte no seu desafio!** 🚀
+## 🚀 Como Funciona?
+Quando o Workflow é Disparado?
+
+Sempre que houver um push ou pull request para a branch main.
+O que ele faz?
+
+Faz o checkout do código do repositório.
+Instala a versão correta do Python e as dependências (pip install -r requirements.txt).
+Instala Google Chrome e ChromeDriver compatível.
+Roda os testes do Robot Framework dentro da pasta tests/.
+Faz upload dos relatórios gerados na pasta results/, permitindo o download pelo GitHub.
+
+## 📊 Como Ver os Relatórios no GitHub?
+Vá até a aba "Actions" do repositório no GitHub.
+Clique no workflow "swag-labs".
+Vá até a seção "Artifacts" e baixe o arquivo robot-framework-results.zip.
+Extraia o zip e abra log.html e report.html no navegador.
 
 
 
