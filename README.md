@@ -17,6 +17,9 @@ Antes de executar os testes, certifique-se de que possui os seguintes requisitos
 
 ```bash
 swag-labs/
+│── .github/
+│   ├── workflows/
+│   │   ├── robot-tests.yml   # Arquivo de configuração do GitHub Actions
 │── .fixtures/                # Configuração inicial do ambiente
 │── resources/                
 │   ├── keywords/             # Arquivos de keywords do Robot Framework
