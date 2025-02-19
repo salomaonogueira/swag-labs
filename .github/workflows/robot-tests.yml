@@ -30,12 +30,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install webdriver-manager
-          pip install ruamel.yaml
+          pip install selenium webdriver-manager ruamel.yaml
 
-      - name: Configurar WebDriver Manager
+      - name: Configurar ChromeDriver
         run: |
-          python -c "from selenium import webdriver; from webdriver_manager.chrome import ChromeDriverManager; driver = webdriver.Chrome(ChromeDriverManager().install())"
+          python -c "from selenium import webdriver; from webdriver_manager.chrome import ChromeDriverManager; options = webdriver.ChromeOptions(); options.binary_location = '/usr/bin/google-chrome'; driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)"
 
       - name: Executar Testes com Robot Framework
         run: |
