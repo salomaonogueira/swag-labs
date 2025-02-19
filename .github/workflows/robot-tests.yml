@@ -21,29 +21,16 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Instalar dependências do sistema
+      - name: Instalar Google Chrome e ChromeDriver
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget unzip curl google-chrome-stable
+          sudo apt-get install -y google-chrome-stable chromium-chromedriver
+          echo "Google Chrome e ChromeDriver instalados com sucesso!"
+          google-chrome --version
+          chromedriver --version
 
       - name: Instalar dependências do projeto
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install selenium webdriver-manager ruamel.yaml
-
-      - name: Configurar ChromeDriver
-        run: |
-          python -c "from selenium import webdriver; from webdriver_manager.chrome import ChromeDriverManager; options = webdriver.ChromeOptions(); options.binary_location = '/usr/bin/google-chrome'; driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)"
-
-      - name: Executar Testes com Robot Framework
-        run: |
-          mkdir -p results
-          robot -d results tests/
-
-      - name: Fazer upload dos relatórios de teste
-        uses: actions/upload-artifact@v4
-        with:
-          name: robot-framework-results
-          path: results/
-          retention-days: 7
+          pip install ruamel.yaml
