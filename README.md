@@ -11,6 +11,8 @@ Antes de executar os testes, certifique-se de que possui os seguintes requisitos
 - **Google Chrome** e **ChromeDriver** compatível
 - Dependências listadas no arquivo `requirements.txt`
 
+Caso ainda não tenha o ChromeDriver, siga as instruções na seção de Configuração do ChromeDriver.
+
 ---
 
 ## 📂 **Estrutura do Projeto**
@@ -89,7 +91,7 @@ pabot -d results tests/
 
 ---
 
-## 📊 **Resultados**
+## 📊 **Relatórios e Logs**
 
 Após a execução, os relatórios podem ser encontrados na pasta `results/`:
 
@@ -97,7 +99,9 @@ Após a execução, os relatórios podem ser encontrados na pasta `results/`:
 - **report.html** → Relatório geral dos testes
 - **output.xml** → Saída no formato XML
 
-Abra os arquivos `.html` no navegador para visualizar os detalhes.
+🔹 Para abrir o relatório após a execução:
+open results/report.html  # MacOS/Linux
+start results\report.html # Windows
 
 ---
 
@@ -117,33 +121,39 @@ Caso precise atualizar as dependências:
 pip freeze > requirements.txt
 ```
 
-## 🛠 Configuração do GitHub Actions
-📄 .github/workflows/robot-tests.yml
-Este arquivo define um workflow que:
+## 🛠 Integração Contínua (GitHub Actions)
+O projeto utiliza GitHub Actions para rodar os testes automaticamente sempre que houver um push ou pull request para a branch main.
 
-Instala o Python e ChromeDriver corretos
-Baixa as dependências do projeto
-Executa os testes do Robot Framework
-Faz upload dos relatórios como artefatos para download
+📄 Configuração: .github/workflows/robot-tests.yml
 
-## 🚀 Como Funciona?
-Quando o Workflow é Disparado?
+🔄 O que o workflow faz?
+1️⃣ Faz o checkout do código-fonte do repositório
+2️⃣ Instala o Python e as dependências do projeto (pip install -r requirements.txt)
+3️⃣ Instala o Google Chrome e o ChromeDriver compatível
+4️⃣ Executa os testes do Robot Framework
+5️⃣ Faz upload dos relatórios de teste como artefatos
 
-Sempre que houver um push ou pull request para a branch main.
-O que ele faz?
+## 📊 Como Acessar os Relatórios no GitHub?
+1️⃣ Vá até a aba "Actions" no repositório do GitHub
+2️⃣ Clique no workflow "swag-labs"
+3️⃣ Na seção "Artifacts", baixe o arquivo robot-framework-results.zip
+4️⃣ Extraia o zip e abra log.html ou report.html no navegador
 
-Faz o checkout do código do repositório.
-Instala a versão correta do Python e as dependências (pip install -r requirements.txt).
-Instala Google Chrome e ChromeDriver compatível.
-Roda os testes do Robot Framework dentro da pasta tests/.
-Faz upload dos relatórios gerados na pasta results/, permitindo o download pelo GitHub.
+## Erros Comuns e Soluções
+🔹 Erro: Element not found
+✅ Verifique se o seletor usado no locators.yaml está correto
+✅ Use Wait Until Element Is Visible para garantir que o elemento foi carregado
 
-## 📊 Como Ver os Relatórios no GitHub?
-Vá até a aba "Actions" do repositório no GitHub.
-Clique no workflow "swag-labs".
-Vá até a seção "Artifacts" e baixe o arquivo robot-framework-results.zip.
-Extraia o zip e abra log.html e report.html no navegador.
+🔹 Erro: Timeout ao carregar a página
+✅ Tente aumentar o tempo de espera usando:
 
+Set Selenium Timeout  10s
+
+## Links Importantes
+🔹 Swag Labs → https://www.saucedemo.com/
+🔹 Robot Framework → https://robotframework.org/
+🔹 SeleniumLibrary → https://github.com/robotframework/SeleniumLibrary
+🔹 Documentação Oficial → https://robotframework.org/
 
 
 
